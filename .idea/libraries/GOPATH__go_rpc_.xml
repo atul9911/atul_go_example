@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="GOPATH &lt;go_rpc&gt;">
+    <CLASSES>
+      <root url="file://$PROJECT_DIR$/../src/github.com" />
+    </CLASSES>
+    <SOURCES />
+    <excluded>
+      <root url="file://$PROJECT_DIR$/../src/github.com/gorilla/mux/.git" />
+      <root url="file://$PROJECT_DIR$/../src/github.com/gorilla/context/.git" />
+      <root url="file://$PROJECT_DIR$" />
+    </excluded>
+  </library>
+</component>

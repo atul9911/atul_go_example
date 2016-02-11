@@ -5,6 +5,7 @@ import (
 	_ "github.com/go-sql-driver/mysql"
 	"log"
 	"fmt"
+	"encoding/json"
 )
 
 
@@ -47,27 +48,36 @@ func main()  {
 	}
 
 	m := make(map[string]string)
-
+	data:= make([]byte,)
 	rows , err := db.Query("select name,email_id from table1")
 	if err != nil{
 		log.Fatal(err)
 	}
 	defer rows.Close()
 	for rows.Next(){
-		err:= rows.Scan(&user.name,&user.email_id)
+		var u user
+		err:= rows.Scan(&u.name,&u.email_id)
 		if err!= nil{
 			log.Fatal(err)
 		}
-		m
+		b,_ := json.Marshal(u)
+		data=append(data,b[:])
 	}
 	err = rows.Err()
 	if(err!= nil){
 		log.Fatal(err)
 	}
 
-
-	fmt.Println(m["name"])
-
+	for i :=range data{
+		fmt.Print(data[i].name)
+		fmt.Println("-",data[i].email_id)
+	}
+//
+//	for k,v := range m{
+//		fmt.Print(k)
+//		fmt.Println("-",v)
+//	}
+////	fmt.Println(u)
 	db.Close()
 }
 
